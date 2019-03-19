@@ -6,10 +6,10 @@
 ![](../static/images/factory/simple-factory-pattern.png)
 
 
-* ### Factory Method Pattern:
+* #### Factory Method Pattern:
 
 ![](../static/images/factory/factory-method-pattern.png)
 
-* ### Abstract Factory Pattern:
+* #### Abstract Factory Pattern:
 
 ![](../static/images/factory/abstract-factory-pattern.png)
