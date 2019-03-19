@@ -3,13 +3,13 @@
 
 * #### Simple Factory Pattern:
 
-![](../static/images/factory/simple-factory-pattern.png)
+![](https://github.com/dang-lu/design-pattern-implement/blob/master/static/images/factory/simple-factory-pattern.png)
 
 
 * #### Factory Method Pattern:
 
-![](../static/images/factory/factory-method-pattern.png)
+![](https://github.com/dang-lu/design-pattern-implement/blob/master/static/images/factory/factory-method-pattern.png)
 
 * #### Abstract Factory Pattern:
 
-![](../static/images/factory/abstract-factory-pattern.png)
+![](https://github.com/dang-lu/design-pattern-implement/blob/master/static/images/factory/abstract-factory-pattern.png)
