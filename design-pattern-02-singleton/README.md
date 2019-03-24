@@ -46,3 +46,47 @@
     a). 全程未用到synchronized，性能较高
     b). 内部类需要等到外部类调用时才执行
     c). 巧妙地运用了内部类的特性，JVM底层的执行逻辑，完美地避免了线程安全问题
+
+
+4. 静态内部类单例模式中**反射**破坏单列的解决方式:
+
+    在外层类的构造方法中添加以下判断：
+
+    ```java
+    
+    if (LazyHolder.lazyInnerClassSingleton != null) {
+                System.out.println("LazyHolder has been initialized!");
+                throw new RuntimeException("不允许构建多个实例！");
+            }
+    
+    ```
+    
+5. 静态内部类单例模式中**序列化**破坏单列的解决方式:
+
+    重写readResolve方法，覆盖反序列化出来的对象。但实际上还是创建了两次对象，只不过发生在JDK层面，相对来说比较安全。
+    之前反序列化出来的对象会被GC回收。
+    
+    ```java
+       
+    private Object readResolve() { 
+            
+            return INSTANCE;
+        }
+
+    ```
+
+6. 枚举式单例模式，属于注册式单列模式
+
+    从JDK层面保证枚举不被反序列化和反射破坏；
+    
+    ```java
+       
+       // 反射获取构造器，然后实例化
+       EnumSingleton o1 = (EnumSingleton) c.newInstance("Tom", 666);
+       
+       // 进入到.newInstance方法
+       if ((clazz.getModifiers() & Modifier.ENUM) != 0)
+                   throw new IllegalArgumentException("Cannot reflectively create enum objects");
+       
+ 
+    ```

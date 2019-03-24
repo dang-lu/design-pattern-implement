@@ -11,7 +11,14 @@ package com.danglu.pattern.singleton.lazy;
 public class LazyInnerClassSingleton {
 
 
-    private LazyInnerClassSingleton () {}
+    private LazyInnerClassSingleton () {
+
+        System.out.println("Call the lazy inner class");
+        if (LazyHolder.lazyInnerClassSingleton != null) {
+            System.out.println("LazyHolder has been initialized!");
+            throw new RuntimeException("不允许构建多个实例！");
+        }
+    }
 
 
     public static LazyInnerClassSingleton getInstance() {
