@@ -3,6 +3,7 @@ package com.danglu.pattern.singleton.lazy.test;
 import com.danglu.pattern.singleton.lazy.LazyDoubleCheckSingleton;
 import com.danglu.pattern.singleton.lazy.LazyInnerClassSingleton;
 import com.danglu.pattern.singleton.lazy.LazySimpleSingleton;
+import com.danglu.pattern.singleton.threadLocal.ThreadLocalSingleton;
 
 /**
  * @ClassName: ExecutorThread
@@ -22,8 +23,11 @@ public class ExecutorThread implements Runnable {
 //        LazyDoubleCheckSingleton lazyDoubleCheckSingleton = LazyDoubleCheckSingleton.getInstance();
 //        System.out LazyDoubleCheckSingleton lazyDoubleCheckSingleton = LazyDoubleCheckSingleton.getInstance();
 
-        LazyInnerClassSingleton lazyInnerClassSingleton = LazyInnerClassSingleton.getInstance();
-        System.out.println(Thread.currentThread().getName() + ": " + lazyInnerClassSingleton);
+//        LazyInnerClassSingleton lazyInnerClassSingleton = LazyInnerClassSingleton.getInstance();
+//        System.out.println(Thread.currentThread().getName() + ": " + lazyInnerClassSingleton);
+
+        ThreadLocalSingleton singleton = ThreadLocalSingleton.getInstance();
+        System.out.println(Thread.currentThread().getName() + ": " + singleton);
 
     }
 }

@@ -90,3 +90,74 @@
        
  
     ```
+    
+7. 容器时单例模式，属于注册式单列模式
+    存在线程安全问题，方便对象的管理。
+    
+    ```java
+    
+    private static Map<String, Object> ioc = new ConcurrentHashMap<String, Object>();
+    
+        public static Object getBean(String className) {
+            synchronized (ioc) {
+                if (!ioc.containsKey(className)){
+                    Object obj = null;
+                    try {
+                        obj = Class.forName(className).newInstance();
+                        ioc.put(className, obj);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    return obj;
+                }
+                return ioc.get(className);
+            }
+        }
+    
+    ```
+
+
+8. ThreadLocal 单例模式
+
+   保证线程内部的全局唯一，且天生线程安全
+
+//伪线程安全，在同一个线程内部能保证线程安全
+// 应用场景： 可以用其实现数据源动态切换，即数据源路由
+
+```java
+
+private static final ThreadLocal<ThreadLocalSingleton> threadLocalInstance = new ThreadLocal<ThreadLocalSingleton>() {
+        @Override
+        protected ThreadLocalSingleton initialValue() {
+
+            return new ThreadLocalSingleton();
+        }
+    };
+
+
+    public static ThreadLocalSingleton getInstance() {
+        return threadLocalInstance.get();
+    }
+
+```
+
+9. 单例模式的优点：
+
+    
+ **优点**
+  * 在内存中只有一个实例，减少内存开销
+  * 可以避免对资源的多重占用
+  * 设置全局访问点，严格控制访问
+
+  **缺点**
+  * 没有接口，扩展困难
+  * 如果要扩展单例对象，只有修改代码，没有其他方法，违反**开闭原则**
+  
+
+10. 单例模式重点总结：
+
+   * 私有化构造器
+   * 保证线程安全
+   * 延迟加载
+   * 防止序列化和反序列化破坏单利
+   * 防御反射攻击单利
